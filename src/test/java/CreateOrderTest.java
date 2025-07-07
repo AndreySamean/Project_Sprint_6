@@ -1,33 +1,27 @@
 import model.CreateOrderPage;
 import model.MainPage;
+import model.settings.Browser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static model.settings.Driver.getWebDriver;
+
 
 public class CreateOrderTest {
     private WebDriver driver;
 
     @BeforeEach
     public void setUp() {
-        driver = MainPageTest.getWebDriver(Browser.CHROME);
+        driver = getWebDriver(Browser.CHROME);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://qa-scooter.praktikum-services.ru/");
-    }
-
-    public static WebDriver getWebDriver(Browser browser){
-        switch (browser){
-            case CHROME:  return new ChromeDriver();
-            case FIREFOX: return new FirefoxDriver();
-            default: throw new RuntimeException("Неизвестный браузер");
-        }
     }
 
     @ParameterizedTest(name = "Проверка кнопки {0}")

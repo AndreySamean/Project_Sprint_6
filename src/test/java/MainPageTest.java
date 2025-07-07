@@ -1,3 +1,4 @@
+import model.settings.Browser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -5,11 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.WebDriver;
 import model.MainPage;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 import java.util.Set;
 
+import static model.settings.Driver.getWebDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -24,13 +25,6 @@ public class MainPageTest {
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
 
-    public static WebDriver getWebDriver(Browser browser){
-         switch (browser){
-            case CHROME:  return new ChromeDriver();
-            case FIREFOX: return new FirefoxDriver();
-            default: throw new RuntimeException("Неизвестный браузер");
-        }
-    }
 
     @ParameterizedTest
     @CsvSource({

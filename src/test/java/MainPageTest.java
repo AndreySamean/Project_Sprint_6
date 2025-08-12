@@ -1,11 +1,12 @@
+import model.MainPage;
 import model.settings.Browser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.WebDriver;
-import model.MainPage;
 
 
 import java.util.Set;
@@ -14,7 +15,7 @@ import static model.settings.Driver.getWebDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@DisplayName("Тесты главной страницы")
 public class MainPageTest {
 
     private WebDriver driver;
@@ -37,6 +38,7 @@ public class MainPageTest {
             "6, 'Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.'",
             "7, 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'"
     })
+    @DisplayName("Тест содержимого аккордеона")
     public void checkAccordionItem(int index, String text){
         MainPage mainPage = new MainPage(driver);
         mainPage.clickAccordeonButton(index);
@@ -44,6 +46,7 @@ public class MainPageTest {
         assertEquals(text, actual);
     }
 
+    @DisplayName("Переход на главную страницу при нажатии на логотип самоката")
     @Test
     public void goToMainPageTest(){
         MainPage mainPage = new MainPage(driver);
@@ -53,6 +56,7 @@ public class MainPageTest {
         assertTrue(mainPage.isMainPageDisplayed());
     }
 
+    @DisplayName("Переход на главную страницу яндекса при нажатии на логотип Яндекс")
     @Test
     public void goToYandexMainPage() throws InterruptedException {
         MainPage mainPage = new MainPage(driver);

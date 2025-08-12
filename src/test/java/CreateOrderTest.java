@@ -3,6 +3,7 @@ import model.MainPage;
 import model.settings.Browser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static model.settings.Driver.getWebDriver;
 
 
+@DisplayName("Тесты на создание заказа")
 public class CreateOrderTest {
     private WebDriver driver;
 
@@ -29,6 +31,7 @@ public class CreateOrderTest {
             "верхняя",
             "нижняя"
     })
+    @DisplayName("Проверка входа на страницу заказа через разные точки входа")
     public void entryPointTest(String entryPoint){
 
         MainPage mainPage = new MainPage(driver);
@@ -50,6 +53,7 @@ public class CreateOrderTest {
             "Анна, Сидорова, Казань Кремлевская 35, Румянцево, +79995554433, black, ''",
             "Елена, Сергеева, Новосибирск Красный проспект 50, Парк культуры, +79991112233, grey, ''"
     })
+    @DisplayName("Проверка создания заказа с разными тестовыми данными")
     public void testOrderFlowTest(
             String firstName, String surname, String address,
             String metroStation, String phoneNumber, String scooterColor,
@@ -73,6 +77,7 @@ public class CreateOrderTest {
             "Иван, Иванов, 1, Черкизовская, +79991234567, Введите корректный адрес",
             "Иван, Иванов, Москва ул. Ленина 1, Черкизовская, 1, Введите корректный номер"
     })
+    @DisplayName("Некорректно заполненное поле - ошибка")
     public void errorInFirstOrderPageIsDisplayed(String firstName, String surname, String address,
                                              String metroStation, String phoneNumber, String errorMessage){
         MainPage mainPage = new MainPage(driver);

@@ -2,6 +2,7 @@ import model.MainPage;
 import model.settings.Browser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import static model.settings.Driver.getWebDriver;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("Тест страницы проверки статуса заказа")
 public class CheckOrderStatusTest {
 
     public static final String INCORRECT_ORDER_NUMBER = "hfiasgiy1";
@@ -23,6 +25,7 @@ public class CheckOrderStatusTest {
 
 
     @Test
+    @DisplayName("Некорректный номер заказа - ошибка")
     public void incorrectOrderNumberGetNotFoundImageTrue(){
 
         MainPage mainPage = new MainPage(driver);
